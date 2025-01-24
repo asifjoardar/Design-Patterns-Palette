@@ -4,6 +4,7 @@ import org.asif.app.components.*;
 import org.asif.app.utils.DeploymentConstants;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ConcreteDeploymentConfigurationBuilder implements DeploymentConfigurationBuilder {
     // Required fields
@@ -20,9 +21,8 @@ public class ConcreteDeploymentConfigurationBuilder implements DeploymentConfigu
 
     @Override
     public DeploymentConfigurationBuilder environment(DeploymentEnvironment environment) {
-        if (environment == null) {
-            throw new IllegalArgumentException("Environment must not be null.");
-        }
+        Optional.ofNullable(environment)
+                .orElseThrow(() -> new IllegalArgumentException("Environment must not be null."));
 
         this.environment = environment;
 
@@ -31,9 +31,8 @@ public class ConcreteDeploymentConfigurationBuilder implements DeploymentConfigu
 
     @Override
     public DeploymentConfigurationBuilder region(Region region) {
-        if (region == null) {
-            throw new IllegalArgumentException("Region must not be null.");
-        }
+        Optional.ofNullable(region)
+                .orElseThrow(() -> new IllegalArgumentException("Region must not be null."));
 
         this.region = region;
 
@@ -92,13 +91,15 @@ public class ConcreteDeploymentConfigurationBuilder implements DeploymentConfigu
             throw new IllegalStateException("Min instances cannot exceed max instances.");
         }
 
-        if (environment == null || region == null) {
-            throw new IllegalStateException("Environment and region must be set before building.");
-        }
+        DeploymentEnvironment validatedEnvironment = Optional.ofNullable(environment)
+                .orElseThrow(() -> new IllegalStateException("Environment must be set before building."));
+
+        Region validatedRegion = Optional.ofNullable(region)
+                .orElseThrow(() -> new IllegalStateException("Region must be set before building."));
 
         return new DeploymentConfiguration(
-                environment,
-                region,
+                validatedEnvironment,
+                validatedRegion,
                 maxInstances,
                 minInstances,
                 autoScalingEnabled,
