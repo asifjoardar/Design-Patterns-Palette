@@ -5,11 +5,11 @@ import org.asif.app.utils.DeploymentConstants;
 
 import java.util.List;
 
-public class DeploymentDirector {
+public class DeploymentConfigurationDirector {
 
     private final DeploymentConfigurationBuilder builder;
 
-    public DeploymentDirector(DeploymentConfigurationBuilder builder) {
+    public DeploymentConfigurationDirector(DeploymentConfigurationBuilder builder) {
         this.builder = builder;
     }
 

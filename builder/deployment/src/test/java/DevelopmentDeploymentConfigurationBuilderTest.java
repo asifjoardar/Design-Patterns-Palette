@@ -1,7 +1,7 @@
 import org.asif.app.components.*;
+import org.asif.app.configuration.ConcreteDeploymentConfigurationBuilder;
 import org.asif.app.configuration.DeploymentConfiguration;
 import org.asif.app.configuration.DeploymentConfigurationBuilder;
-import org.asif.app.configuration.DevelopmentDeploymentConfigurationBuilder;
 import org.asif.app.utils.DeploymentConstants;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +12,10 @@ public class DevelopmentDeploymentConfigurationBuilderTest {
 
     @Test
     void testBuildValidConfiguration() {
-        DeploymentConfigurationBuilder builder = new DevelopmentDeploymentConfigurationBuilder();
-        builder.environment(DeploymentEnvironment.DEVELOPMENT)
+        DeploymentConfigurationBuilder builder = new ConcreteDeploymentConfigurationBuilder();
+
+        DeploymentConfiguration config = builder
+                .environment(DeploymentEnvironment.DEVELOPMENT)
                 .region(Region.US_EAST_1)
                 .maxInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_DEVELOPMENT)
                 .minInstances(DeploymentConstants.DEFAULT_MIN_INSTANCES_DEVELOPMENT)
@@ -24,9 +26,8 @@ public class DevelopmentDeploymentConfigurationBuilderTest {
                         LoggingLevel.INFO,
                         LoggingLevel.WARN,
                         LoggingLevel.ERROR))
-                .storageType(StorageType.STANDARD);
-
-        DeploymentConfiguration config = builder.build();
+                .storageType(StorageType.STANDARD)
+                .build();
 
         assertNotNull(config);
         assertEquals(DeploymentEnvironment.DEVELOPMENT, config.getEnvironment());
@@ -45,7 +46,8 @@ public class DevelopmentDeploymentConfigurationBuilderTest {
 
     @Test
     void testBuildInvalidConfigurationWithMinInstancesGreaterThanMaxInstances() {
-        DeploymentConfigurationBuilder builder = new DevelopmentDeploymentConfigurationBuilder();
+        DeploymentConfigurationBuilder builder = new ConcreteDeploymentConfigurationBuilder();
+
         builder.environment(DeploymentEnvironment.DEVELOPMENT)
                 .region(Region.US_EAST_1)
                 .maxInstances(DeploymentConstants.DEFAULT_MIN_INSTANCES_DEVELOPMENT)
@@ -57,7 +59,7 @@ public class DevelopmentDeploymentConfigurationBuilderTest {
 
     @Test
     void testBuildInvalidConfigurationWithMissingRequiredFields() {
-        DeploymentConfigurationBuilder builder = new DevelopmentDeploymentConfigurationBuilder();
+        DeploymentConfigurationBuilder builder = new ConcreteDeploymentConfigurationBuilder();
 
         IllegalStateException thrown = assertThrows(IllegalStateException.class, builder::build);
         assertEquals("Environment and region must be set before building.", thrown.getMessage());

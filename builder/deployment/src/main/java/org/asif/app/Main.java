@@ -14,8 +14,8 @@ public final class Main {
     }
 
     public static void deployWithDevelopmentConfiguration() {
-        DeploymentConfigurationBuilder builder = new DevelopmentDeploymentConfigurationBuilder();
-        DeploymentDirector director = new DeploymentDirector(builder);
+        DeploymentConfigurationBuilder builder = new ConcreteDeploymentConfigurationBuilder();
+        DeploymentConfigurationDirector director = new DeploymentConfigurationDirector(builder);
 
         DeploymentConfiguration developmentDeploymentConfiguration =
                 director.constructDevelopmentDeploymentConfiguration();
@@ -25,8 +25,8 @@ public final class Main {
     }
 
     public static void deployWithStagingConfiguration() {
-        DeploymentConfigurationBuilder builder = new StagingDeploymentConfigurationBuilder();
-        DeploymentDirector director = new DeploymentDirector(builder);
+        DeploymentConfigurationBuilder builder = new ConcreteDeploymentConfigurationBuilder();
+        DeploymentConfigurationDirector director = new DeploymentConfigurationDirector(builder);
 
         DeploymentConfiguration stagingDeploymentConfiguration =
                 director.constructStagingDeploymentConfiguration();
@@ -36,8 +36,8 @@ public final class Main {
     }
 
     public static void deployWithProductionConfiguration() {
-        DeploymentConfigurationBuilder builder = new ProductionDeploymentConfigurationBuilder();
-        DeploymentDirector director = new DeploymentDirector(builder);
+        DeploymentConfigurationBuilder builder = new ConcreteDeploymentConfigurationBuilder();
+        DeploymentConfigurationDirector director = new DeploymentConfigurationDirector(builder);
 
         DeploymentConfiguration productionDeploymentConfiguration =
                 director.constructProductionDeploymentConfiguration();
@@ -47,10 +47,10 @@ public final class Main {
     }
 
     public static void deployWithCustomConfiguration() {
-        ProductionDeploymentConfigurationBuilder productionDeploymentConfigurationBuilder =
-                new ProductionDeploymentConfigurationBuilder();
+        ConcreteDeploymentConfigurationBuilder builder =
+                new ConcreteDeploymentConfigurationBuilder();
 
-        productionDeploymentConfigurationBuilder
+        DeploymentConfiguration configuration =builder
                 .environment(DeploymentEnvironment.PRODUCTION)
                 .region(Region.US_WEST_2)
                 .maxInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_PRODUCTION)
@@ -58,10 +58,10 @@ public final class Main {
                 .autoScalingEnabled(true)
                 .networkPolicy(NetworkPolicy.OPEN)
                 .loggingLevels(List.of(LoggingLevel.INFO, LoggingLevel.WARN, LoggingLevel.ERROR))
-                .storageType(StorageType.ARCHIVE);
+                .storageType(StorageType.ARCHIVE)
+                .build();
 
-        DeploymentConfiguration configuration2 = productionDeploymentConfigurationBuilder.build();
-        Deployment deployment = new Deployment(configuration2);
+        Deployment deployment = new Deployment(configuration);
         deployment.deploy();
     }
     public static void main(String[] args) {
@@ -91,6 +91,7 @@ public final class Main {
                 default -> System.out.println("Invalid choice. Please try again.");
             }
 
+            System.out.println();
             System.out.println("Deployment completed. \uD83D\uDE80");
         }
     }

@@ -5,8 +5,7 @@ import org.asif.app.utils.DeploymentConstants;
 
 import java.util.List;
 
-public class DevelopmentDeploymentConfigurationBuilder implements DeploymentConfigurationBuilder {
-
+public class ConcreteDeploymentConfigurationBuilder implements DeploymentConfigurationBuilder {
     // Required fields
     private DeploymentEnvironment environment;
     private Region region;
@@ -16,8 +15,7 @@ public class DevelopmentDeploymentConfigurationBuilder implements DeploymentConf
     private int minInstances = 1;
     private boolean autoScalingEnabled = false;
     private NetworkPolicy networkPolicy = NetworkPolicy.DEFAULT;
-    private List<LoggingLevel> loggingLevels = List.of(
-            LoggingLevel.DEBUG, LoggingLevel.INFO, LoggingLevel.WARN, LoggingLevel.ERROR);
+    private List<LoggingLevel> loggingLevels = List.of(LoggingLevel.ERROR);
     private StorageType storageType = StorageType.STANDARD;
 
     @Override

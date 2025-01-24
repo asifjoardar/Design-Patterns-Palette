@@ -22,6 +22,8 @@ public final class DeploymentConstants {
 
 
     private DeploymentConstants() {
-        throw new IllegalStateException("Utility class cannot be instantiated");
+        throw new UnsupportedOperationException(
+                "The utility class DeploymentConstants cannot be instantiated"
+        );
     }
 }
