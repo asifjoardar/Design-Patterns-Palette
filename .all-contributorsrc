@@ -36,7 +36,8 @@
         "projectManagement",
         "maintenance",
         "review",
-        "code"
+        "code",
+        "content"
       ]
     }
   ]
