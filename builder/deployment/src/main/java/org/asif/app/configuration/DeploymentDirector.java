@@ -1,6 +1,7 @@
 package org.asif.app.configuration;
 
 import org.asif.app.components.*;
+import org.asif.app.utils.DeploymentConstants;
 
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class DeploymentDirector {
     public DeploymentConfiguration constructStagingDeploymentConfiguration() {
         builder.environment(DeploymentEnvironment.STAGING)
                 .region(Region.US_EAST_1)
-                .maxInstances(2)
-                .minInstances(1)
+                .maxInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_STAGING)
+                .minInstances(DeploymentConstants.DEFAULT_MIN_INSTANCES_STAGING)
                 .autoScalingEnabled(true)
                 .networkPolicy(NetworkPolicy.RESTRICTED)
                 .loggingLevels(List.of(LoggingLevel.INFO, LoggingLevel.ERROR))
@@ -35,8 +36,8 @@ public class DeploymentDirector {
     public DeploymentConfiguration constructProductionDeploymentConfiguration() {
         builder.environment(DeploymentEnvironment.PRODUCTION)
                 .region(Region.US_WEST_2)
-                .maxInstances(10)
-                .minInstances(5)
+                .maxInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_PRODUCTION)
+                .minInstances(DeploymentConstants.DEFAULT_MIN_INSTANCES_PRODUCTION)
                 .autoScalingEnabled(true)
                 .networkPolicy(NetworkPolicy.OPEN)
                 .loggingLevels(List.of(LoggingLevel.INFO, LoggingLevel.WARN, LoggingLevel.ERROR))

@@ -2,11 +2,16 @@ package org.asif.app;
 
 import org.asif.app.components.*;
 import org.asif.app.configuration.*;
+import org.asif.app.utils.DeploymentConstants;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public final class Main {
+
+    private Main() {
+        throw new UnsupportedOperationException("Main class cannot be instantiated");
+    }
 
     public static void deployWithDevelopmentConfiguration() {
         DeploymentConfigurationBuilder builder = new DevelopmentDeploymentConfigurationBuilder();
@@ -48,8 +53,8 @@ public class Main {
         productionDeploymentConfigurationBuilder
                 .environment(DeploymentEnvironment.PRODUCTION)
                 .region(Region.US_WEST_2)
-                .maxInstances(10)
-                .minInstances(5)
+                .maxInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_PRODUCTION)
+                .minInstances(DeploymentConstants.DEFAULT_MIN_INSTANCES_PRODUCTION)
                 .autoScalingEnabled(true)
                 .networkPolicy(NetworkPolicy.OPEN)
                 .loggingLevels(List.of(LoggingLevel.INFO, LoggingLevel.WARN, LoggingLevel.ERROR))
@@ -74,11 +79,11 @@ public class Main {
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 1 -> deployWithDevelopmentConfiguration();
-                case 2 -> deployWithStagingConfiguration();
-                case 3 -> deployWithProductionConfiguration();
-                case 4 -> deployWithCustomConfiguration();
-                case 5 -> {
+                case DeploymentConstants.OPTION_DEVELOPMENT -> deployWithDevelopmentConfiguration();
+                case DeploymentConstants.OPTION_STAGING -> deployWithStagingConfiguration();
+                case DeploymentConstants.OPTION_PRODUCTION -> deployWithProductionConfiguration();
+                case DeploymentConstants.OPTION_CUSTOM_CONFIGURATION -> deployWithCustomConfiguration();
+                case DeploymentConstants.OPTION_EXIT -> {
                     System.out.println("Exiting the program. Goodbye!");
                     scanner.close();
                     return;

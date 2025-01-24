@@ -1,6 +1,7 @@
 package org.asif.app.configuration;
 
 import org.asif.app.components.*;
+import org.asif.app.utils.DeploymentConstants;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class StagingDeploymentConfigurationBuilder implements DeploymentConfigur
 
     @Override
     public DeploymentConfigurationBuilder maxInstances(int maxInstances) {
-        if (maxInstances < 1) {
+        if (maxInstances < DeploymentConstants.DEFAULT_MAX_INSTANCES) {
             throw new IllegalArgumentException("Max instances must be at least 1.");
         }
 
@@ -54,7 +55,7 @@ public class StagingDeploymentConfigurationBuilder implements DeploymentConfigur
 
     @Override
     public DeploymentConfigurationBuilder minInstances(int minInstances) {
-        if (minInstances < 1) {
+        if (minInstances < DeploymentConstants.DEFAULT_MIN_INSTANCES) {
             throw new IllegalArgumentException("Min instances must be at least 1.");
         }
 

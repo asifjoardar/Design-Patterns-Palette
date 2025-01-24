@@ -2,6 +2,7 @@ import org.asif.app.components.*;
 import org.asif.app.configuration.DeploymentConfiguration;
 import org.asif.app.configuration.DeploymentConfigurationBuilder;
 import org.asif.app.configuration.DevelopmentDeploymentConfigurationBuilder;
+import org.asif.app.utils.DeploymentConstants;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class DevelopmentDeploymentConfigurationBuilderTest {
         DeploymentConfigurationBuilder builder = new DevelopmentDeploymentConfigurationBuilder();
         builder.environment(DeploymentEnvironment.DEVELOPMENT)
                 .region(Region.US_EAST_1)
-                .maxInstances(5)
-                .minInstances(2)
+                .maxInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_DEVELOPMENT)
+                .minInstances(DeploymentConstants.DEFAULT_MIN_INSTANCES_DEVELOPMENT)
                 .autoScalingEnabled(true)
                 .networkPolicy(NetworkPolicy.OPEN)
                 .loggingLevels(List.of(
@@ -30,8 +31,8 @@ public class DevelopmentDeploymentConfigurationBuilderTest {
         assertNotNull(config);
         assertEquals(DeploymentEnvironment.DEVELOPMENT, config.getEnvironment());
         assertEquals(Region.US_EAST_1, config.getRegion());
-        assertEquals(5, config.getMaxInstances());
-        assertEquals(2, config.getMinInstances());
+        assertEquals(DeploymentConstants.DEFAULT_MAX_INSTANCES_DEVELOPMENT, config.getMaxInstances());
+        assertEquals(DeploymentConstants.DEFAULT_MIN_INSTANCES_DEVELOPMENT, config.getMinInstances());
         assertTrue(config.isAutoScalingEnabled());
         assertEquals(NetworkPolicy.OPEN, config.getNetworkPolicy());
         assertEquals(List.of(
@@ -43,19 +44,19 @@ public class DevelopmentDeploymentConfigurationBuilderTest {
     }
 
     @Test
-    void testBuildInvalidConfiguration_minInstancesGreaterThanMaxInstances() {
+    void testBuildInvalidConfigurationWithMinInstancesGreaterThanMaxInstances() {
         DeploymentConfigurationBuilder builder = new DevelopmentDeploymentConfigurationBuilder();
         builder.environment(DeploymentEnvironment.DEVELOPMENT)
                 .region(Region.US_EAST_1)
-                .maxInstances(2)
-                .minInstances(3);
+                .maxInstances(DeploymentConstants.DEFAULT_MIN_INSTANCES_DEVELOPMENT)
+                .minInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_DEVELOPMENT);
 
         IllegalStateException thrown = assertThrows(IllegalStateException.class, builder::build);
         assertEquals("Min instances cannot exceed max instances.", thrown.getMessage());
     }
 
     @Test
-    void testBuildInvalidConfiguration_missingRequiredFields() {
+    void testBuildInvalidConfigurationWithMissingRequiredFields() {
         DeploymentConfigurationBuilder builder = new DevelopmentDeploymentConfigurationBuilder();
 
         IllegalStateException thrown = assertThrows(IllegalStateException.class, builder::build);
