@@ -39,7 +39,7 @@ public class DevelopmentDeploymentConfigurationBuilderTest {
                 LoggingLevel.INFO,
                 LoggingLevel.WARN,
                 LoggingLevel.ERROR), config.getLoggingLevels());
-        assertEquals(StorageType.PREMIUM, config.getStorageType());
+        assertEquals(StorageType.STANDARD, config.getStorageType());
     }
 
     @Test
