@@ -50,7 +50,7 @@ public final class Main {
         ConcreteDeploymentConfigurationBuilder builder =
                 new ConcreteDeploymentConfigurationBuilder();
 
-        DeploymentConfiguration configuration =builder
+        DeploymentConfiguration configuration = builder
                 .environment(DeploymentEnvironment.PRODUCTION)
                 .region(Region.US_WEST_2)
                 .maxInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_PRODUCTION)
