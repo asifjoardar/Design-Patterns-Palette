@@ -1,0 +1,107 @@
+@startuml
+title Deployment Configuration System
+
+' Enums
+enum DeploymentEnvironment {
+    PRODUCTION
+    STAGING
+    DEVELOPMENT
+}
+
+enum LoggingLevel {
+    DEBUG
+    INFO
+    WARN
+    ERROR
+}
+
+enum NetworkPolicy {
+    DEFAULT
+    OPEN
+    RESTRICTED
+    CLOSED
+}
+
+enum Region {
+    US_EAST_1
+    US_WEST_2
+    EU_WEST_1
+    AP_SOUTH_1
+    AP_NORTHEAST_1
+    SA_EAST_1
+    CA_CENTRAL_1
+}
+
+enum StorageType {
+    STANDARD
+    PREMIUM
+    ARCHIVE
+}
+
+' Classes
+class DeploymentConfiguration {
+    + DeploymentEnvironment environment
+    + Region region
+    + int maxInstances
+    + int minInstances
+    + boolean autoScalingEnabled
+    + NetworkPolicy networkPolicy
+    + List<LoggingLevel> loggingLevels
+    + StorageType storageType
+}
+
+interface DeploymentConfigurationBuilder {
+    + environment(DeploymentEnvironment): DeploymentConfigurationBuilder
+    + region(Region): DeploymentConfigurationBuilder
+    + maxInstances(int): DeploymentConfigurationBuilder
+    + minInstances(int): DeploymentConfigurationBuilder
+    + autoScalingEnabled(boolean): DeploymentConfigurationBuilder
+    + networkPolicy(NetworkPolicy): DeploymentConfigurationBuilder
+    + loggingLevels(List<LoggingLevel>): DeploymentConfigurationBuilder
+    + storageType(StorageType): DeploymentConfigurationBuilder
+    + build(): DeploymentConfiguration
+}
+
+class DevelopmentDeploymentConfigurationBuilder {
+    + build(): DeploymentConfiguration
+}
+
+class StagingDeploymentConfigurationBuilder {
+    + build(): DeploymentConfiguration
+}
+
+class ProductionDeploymentConfigurationBuilder {
+    + build(): DeploymentConfiguration
+}
+
+class DeploymentDirector {
+    + constructDevelopmentDeploymentConfiguration(): DeploymentConfiguration
+    + constructStagingDeploymentConfiguration(): DeploymentConfiguration
+    + constructProductionDeploymentConfiguration(): DeploymentConfiguration
+}
+
+class Deployment {
+    + DeploymentConfiguration configuration
+    + deploy(): void
+}
+
+class Main {
+    + deployWithDevelopmentConfiguration(): void
+    + deployWithStagingConfiguration(): void
+    + deployWithProductionConfiguration(): void
+    + deployWithCustomConfiguration(): void
+}
+
+' Relationships
+DeploymentConfigurationBuilder <|.. DevelopmentDeploymentConfigurationBuilder
+DeploymentConfigurationBuilder <|.. StagingDeploymentConfigurationBuilder
+DeploymentConfigurationBuilder <|.. ProductionDeploymentConfigurationBuilder
+
+DeploymentDirector --> DeploymentConfigurationBuilder
+Deployment --> DeploymentConfiguration
+Main --> DeploymentDirector
+Main --> Deployment
+Main --> DeploymentConfigurationBuilder
+Main --> DeploymentConfiguration
+
+@enduml
