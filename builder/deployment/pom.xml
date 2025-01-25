@@ -5,20 +5,31 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.asif</groupId>
-        <artifactId>design-patterns-palette</artifactId>
+        <artifactId>builder</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>builder</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>deployment</module>
-    </modules>
+    <artifactId>deployment</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.36</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.11.4</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -1,0 +1,121 @@
+@startuml
+title Deployment Configuration System
+
+' Define components (Enums)
+package "Components" {
+    class DeploymentEnvironment {
+        +PRODUCTION
+        +STAGING
+        +DEVELOPMENT
+    }
+
+    class Region {
+        +US_EAST_1
+        +US_WEST_2
+        +EU_WEST_1
+        +AP_SOUTH_1
+        +AP_NORTHEAST_1
+        +SA_EAST_1
+        +CA_CENTRAL_1
+    }
+
+    class LoggingLevel {
+        +DEBUG
+        +INFO
+        +WARN
+        +ERROR
+    }
+
+    class NetworkPolicy {
+        +DEFAULT
+        +OPEN
+        +RESTRICTED
+        +CLOSED
+    }
+
+    class StorageType {
+        +STANDARD
+        +PREMIUM
+        +ARCHIVE
+    }
+}
+
+' Define the main configuration classes
+package "Configuration" {
+    interface DeploymentConfigurationBuilder {
+        +environment(DeploymentEnvironment) : DeploymentConfigurationBuilder
+        +region(Region) : DeploymentConfigurationBuilder
+        +maxInstances(int) : DeploymentConfigurationBuilder
+        +minInstances(int) : DeploymentConfigurationBuilder
+        +autoScalingEnabled(boolean) : DeploymentConfigurationBuilder
+        +networkPolicy(NetworkPolicy) : DeploymentConfigurationBuilder
+        +loggingLevels(List<LoggingLevel>) : DeploymentConfigurationBuilder
+        +storageType(StorageType) : DeploymentConfigurationBuilder
+        +build() : DeploymentConfiguration
+    }
+
+    class ConcreteDeploymentConfigurationBuilder {
+        - DeploymentEnvironment environment
+        - Region region
+        - int maxInstances
+        - int minInstances
+        - boolean autoScalingEnabled
+        - NetworkPolicy networkPolicy
+        - List<LoggingLevel> loggingLevels
+        - StorageType storageType
+        +environment(DeploymentEnvironment) : DeploymentConfigurationBuilder
+        +region(Region) : DeploymentConfigurationBuilder
+        +maxInstances(int) : DeploymentConfigurationBuilder
+        +minInstances(int) : DeploymentConfigurationBuilder
+        +autoScalingEnabled(boolean) : DeploymentConfigurationBuilder
+        +networkPolicy(NetworkPolicy) : DeploymentConfigurationBuilder
+        +loggingLevels(List<LoggingLevel>) : DeploymentConfigurationBuilder
+        +storageType(StorageType) : DeploymentConfigurationBuilder
+        +build() : DeploymentConfiguration
+    }
+
+    class DeploymentConfiguration {
+        - DeploymentEnvironment environment
+        - Region region
+        - int maxInstances
+        - int minInstances
+        - boolean autoScalingEnabled
+        - NetworkPolicy networkPolicy
+        - List<LoggingLevel> loggingLevels
+        - StorageType storageType
+        +constructor(DeploymentEnvironment, Region, int, int, boolean, NetworkPolicy, List<LoggingLevel>, StorageType)
+    }
+
+    class DeploymentConfigurationDirector {
+        - DeploymentConfigurationBuilder builder
+        +constructDevelopmentDeploymentConfiguration() : DeploymentConfiguration
+        +constructStagingDeploymentConfiguration() : DeploymentConfiguration
+        +constructProductionDeploymentConfiguration() : DeploymentConfiguration
+    }
+}
+
+' Define the classes for deployment execution
+package "App" {
+    class Deployment {
+        - DeploymentConfiguration configuration
+        +constructor(DeploymentConfiguration)
+        +deploy()
+    }
+
+    class Main {
+        +deployWithDevelopmentConfiguration()
+        +deployWithStagingConfiguration()
+        +deployWithProductionConfiguration()
+        +deployWithCustomConfiguration()
+        +main(String[])
+    }
+}
+
+' Relationships
+DeploymentConfigurationBuilder <|-- ConcreteDeploymentConfigurationBuilder
+DeploymentConfigurationDirector --> DeploymentConfigurationBuilder
+Deployment --> DeploymentConfiguration
+Main --> Deployment
+Main --> DeploymentConfigurationDirector
+
+@enduml
