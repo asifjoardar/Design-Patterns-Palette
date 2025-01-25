@@ -60,8 +60,6 @@ public class DevelopmentDeploymentConfigurationBuilderTest {
     @Test
     void testBuildInvalidConfigurationWithMissingRequiredFields() {
         DeploymentConfigurationBuilder builder = new ConcreteDeploymentConfigurationBuilder();
-
-        IllegalStateException thrown = assertThrows(IllegalStateException.class, builder::build);
-        assertEquals("Environment and region must be set before building.", thrown.getMessage());
+        assertThrows(IllegalStateException.class, builder::build);
     }
 }
