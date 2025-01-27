@@ -1,0 +1,23 @@
+@startuml
+abstract class AbstractClass {
+    + templateMethod()
+    + step1()
+    + step2()
+    + step3()
+    + {abstract} primitiveOperation1()
+    + {abstract} primitiveOperation2()
+}
+
+class ConcreteClassA {
+    + primitiveOperation1()
+    + primitiveOperation2()
+}
+
+class ConcreteClassB {
+    + primitiveOperation1()
+    + primitiveOperation2()
+}
+
+AbstractClass <|-- ConcreteClassA
+AbstractClass <|-- ConcreteClassB
+@enduml
