@@ -1,0 +1,15 @@
+@startuml
+class Singleton {
+    -static instance: Singleton
+    -Singleton()
+    +static getInstance(): Singleton
+    +someBusinessLogic()
+}
+
+note right of Singleton::getInstance
+    if (instance == null) {
+        instance = new Singleton();
+    }
+    return instance;
+end note
+@enduml
