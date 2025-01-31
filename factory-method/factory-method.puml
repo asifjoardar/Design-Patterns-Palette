@@ -1,0 +1,40 @@
+@startuml
+interface Product {
+    +doStuff()
+}
+
+class ProductA
+class ProductB
+
+ProductA .up.|> Product
+ProductB .up.|> Product
+
+class Creator {
+    ...
+    +someOperation()
+    +createProduct(): Product
+}
+
+class ConcreteCreatorA {
+    ...
+    +createProduct(): Product
+}
+
+class ConcreteCreatorB {
+    ...
+    +createProduct(): Product
+}
+
+Creator <|-- ConcreteCreatorA
+Creator <|-- ConcreteCreatorB
+Creator .right.> Product
+
+note top of Creator
+Product p = createProduct()
+p.doStuff()
+end note
+
+note bottom of ConcreteCreatorA
+return new ConcreteProductA()
+end note
+@enduml
