@@ -1,0 +1,32 @@
+@startuml
+interface Aggregate {
+    +createIterator()
+}
+
+interface Iterator {
+    +first()
+    +next()
+    +isDone()
+    +currentItem()
+}
+
+class ConcreteAggregate {
+    +createIterator()
+}
+
+class ConcreteIterator {
+}
+
+Client -right-> Iterator
+Client -left-> Aggregate
+
+Iterator <|.. ConcreteIterator
+Aggregate <|.. ConcreteAggregate
+
+ConcreteAggregate <-right- ConcreteIterator
+
+note bottom of ConcreteAggregate
+return new ConcreteIterator(this)
+end note
+
+@enduml
