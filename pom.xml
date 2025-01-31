@@ -23,7 +23,6 @@
         <module>composite</module>
         <module>state</module>
         <module>proxy</module>
-        <module>compound</module>
         <module>builder</module>
     </modules>
 
