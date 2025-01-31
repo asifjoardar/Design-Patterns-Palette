@@ -74,9 +74,9 @@ Imagine you’re reading a book. You don’t need to know how the pages are stor
   - Head First Design Patterns by Eric Freeman and Elisabeth Robson.
 
 - Online Articles:
-  - [Refactoring Guru - State Pattern](https://refactoring.guru/design-patterns/iterator)
+  - [Refactoring Guru - Iterator Pattern](https://refactoring.guru/design-patterns/iterator)
 
 - Videos:
-  - [State Design Pattern - Christopher Okhravi](https://youtu.be/uNTNEfwYXhI)
+  - [Iterator Design Pattern - Christopher Okhravi](https://youtu.be/uNTNEfwYXhI)
 
 ---
