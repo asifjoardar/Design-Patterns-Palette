@@ -1,0 +1,19 @@
+@startuml
+
+class Facade {
+    +operationA()
+    +operationB()
+}
+
+class SubsystemA {
+    +doTaskA()
+}
+
+class SubsystemB {
+    +doTaskB()
+}
+
+Facade --> SubsystemA : calls
+Facade --> SubsystemB : calls
+
+@enduml
