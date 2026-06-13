@@ -9,16 +9,21 @@ import java.awt.event.ActionListener;
  * Windows button implementation.
  */
 public class WindowsButton implements Button {
-    JPanel panel = new JPanel();
-    JFrame frame = new JFrame();
-    JButton button;
+    private static final Color LABEL_BACKGROUND = new Color(235, 233, 126);
+    private static final int LABEL_FONT_SIZE = 44;
+    private static final int FRAME_WIDTH = 320;
+    private static final int FRAME_HEIGHT = 200;
+
+    private final JPanel panel = new JPanel();
+    private final JFrame frame = new JFrame();
+    private JButton button;
 
     public void render() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JLabel label = new JLabel("Hello World!");
         label.setOpaque(true);
-        label.setBackground(new Color(235, 233, 126));
-        label.setFont(new Font("Dialog", Font.BOLD, 44));
+        label.setBackground(LABEL_BACKGROUND);
+        label.setFont(new Font("Dialog", Font.BOLD, LABEL_FONT_SIZE));
         label.setHorizontalAlignment(SwingConstants.CENTER);
         panel.setLayout(new FlowLayout(FlowLayout.CENTER));
         frame.getContentPane().add(panel);
@@ -26,7 +31,7 @@ public class WindowsButton implements Button {
         onClick();
         panel.add(button);
 
-        frame.setSize(320, 200);
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setVisible(true);
         onClick();
     }

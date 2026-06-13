@@ -4,8 +4,12 @@ import org.asif.factory.Dialog;
 import org.asif.factory.HtmlDialog;
 import org.asif.factory.WindowsDialog;
 
-public class Main {
+public final class Main {
     private static Dialog dialog;
+
+    private Main() {
+        throw new UnsupportedOperationException("Main class cannot be instantiated");
+    }
 
     public static void main(String[] args) {
         configure();

@@ -67,15 +67,20 @@ mvn test                                   # run JUnit 5 tests
 mvn checkstyle:check                       # verify coding rules — must pass
 ```
 
-Run an example (the example POMs declare **no** exec/spring-boot plugin, so build first):
+Run an example (the example POMs declare **no** exec/spring-boot plugin, so build first; the
+runtime classpath must include dependencies such as SLF4J/Logback):
 
 ```bash
 mvn -q -pl strategy/payment -am clean package
-cd strategy/payment && java -cp target/classes org.asif.Main
+cd strategy/payment
+mvn -q dependency:build-classpath -Dmdep.outputFile=cp.txt
+java -cp "target/classes:$(cat cp.txt)" org.asif.Main
 ```
 
-Or just run the `Main` class from your IDE. (`mvn exec:java -Dexec.mainClass=org.asif.Main` may
-work as a convenience but is not configured, so don't rely on it.)
+Or just run the `Main` class from your IDE (simplest — it puts dependencies on the classpath for
+you). Plain `java -cp target/classes …` will fail at runtime with `NoClassDefFoundError` for any
+example that logs via SLF4J. (`mvn exec:java -Dexec.mainClass=org.asif.Main` may work as a
+convenience but is not configured, so don't rely on it.)
 
 ## Coding rules (must pass Checkstyle)
 

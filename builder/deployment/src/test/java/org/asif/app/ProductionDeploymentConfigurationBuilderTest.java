@@ -1,3 +1,5 @@
+package org.asif.app;
+
 import org.asif.app.components.*;
 import org.asif.app.configuration.ConcreteDeploymentConfigurationBuilder;
 import org.asif.app.configuration.DeploymentConfiguration;

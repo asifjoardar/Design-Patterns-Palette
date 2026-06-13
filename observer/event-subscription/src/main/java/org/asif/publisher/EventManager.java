@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.*;
 
 public class EventManager {
-    Map<String, List<org.asif.listeners.EventListener>> listeners = new HashMap<>();
+    private final Map<String, List<EventListener>> listeners = new HashMap<>();
 
     public EventManager(String... operations) {
         for (String operation : operations) {

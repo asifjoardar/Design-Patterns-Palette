@@ -5,11 +5,15 @@ import org.asif.publisher.EventManager;
 import java.io.File;
 
 public class Editor {
-    public EventManager events;
+    private final EventManager events;
     private File file;
 
     public Editor() {
         this.events = new EventManager("open", "save");
+    }
+
+    public EventManager getEvents() {
+        return events;
     }
 
     public void openFile(String filePath) {

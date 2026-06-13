@@ -10,7 +10,9 @@ import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
 
 public class CompressionDecorator extends DataSourceDecorator {
-    private int compLevel = 6;
+    private static final int DEFAULT_COMPRESSION_LEVEL = 6;
+    private static final int BUFFER_SIZE = 512;
+    private int compLevel = DEFAULT_COMPRESSION_LEVEL;
 
     public CompressionDecorator(DataSource source) {
         super(source);
@@ -37,7 +39,7 @@ public class CompressionDecorator extends DataSourceDecorator {
     private String compress(String stringData) {
         byte[] data = stringData.getBytes();
         try {
-            ByteArrayOutputStream bout = new ByteArrayOutputStream(512);
+            ByteArrayOutputStream bout = new ByteArrayOutputStream(BUFFER_SIZE);
             DeflaterOutputStream dos = new DeflaterOutputStream(bout, new Deflater(compLevel));
             dos.write(data);
             dos.close();
@@ -53,7 +55,7 @@ public class CompressionDecorator extends DataSourceDecorator {
         try {
             InputStream in = new ByteArrayInputStream(data);
             InflaterInputStream iin = new InflaterInputStream(in);
-            ByteArrayOutputStream bout = new ByteArrayOutputStream(512);
+            ByteArrayOutputStream bout = new ByteArrayOutputStream(BUFFER_SIZE);
             int b;
             while ((b = iin.read()) != -1) {
                 bout.write(b);

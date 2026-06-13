@@ -1,3 +1,5 @@
+package org.asif.app;
+
 import org.asif.app.components.*;
 import org.asif.app.configuration.ConcreteDeploymentConfigurationBuilder;
 import org.asif.app.configuration.DeploymentConfiguration;
@@ -8,7 +10,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-public class DevelopmentDeploymentConfigurationBuilderTest {
+
+public class StagingDeploymentConfigurationBuilderTest {
 
     @Test
     void testBuildValidConfiguration() {
@@ -17,30 +20,22 @@ public class DevelopmentDeploymentConfigurationBuilderTest {
         DeploymentConfiguration config = builder
                 .environment(DeploymentEnvironment.DEVELOPMENT)
                 .region(Region.US_EAST_1)
-                .maxInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_DEVELOPMENT)
-                .minInstances(DeploymentConstants.DEFAULT_MIN_INSTANCES_DEVELOPMENT)
+                .maxInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_STAGING)
+                .minInstances(DeploymentConstants.DEFAULT_MIN_INSTANCES_STAGING)
                 .autoScalingEnabled(true)
-                .networkPolicy(NetworkPolicy.OPEN)
-                .loggingLevels(List.of(
-                        LoggingLevel.DEBUG,
-                        LoggingLevel.INFO,
-                        LoggingLevel.WARN,
-                        LoggingLevel.ERROR))
+                .networkPolicy(NetworkPolicy.CLOSED)
+                .loggingLevels(List.of(LoggingLevel.INFO, LoggingLevel.WARN, LoggingLevel.ERROR))
                 .storageType(StorageType.STANDARD)
                 .build();
 
         assertNotNull(config);
         assertEquals(DeploymentEnvironment.DEVELOPMENT, config.getEnvironment());
         assertEquals(Region.US_EAST_1, config.getRegion());
-        assertEquals(DeploymentConstants.DEFAULT_MAX_INSTANCES_DEVELOPMENT, config.getMaxInstances());
-        assertEquals(DeploymentConstants.DEFAULT_MIN_INSTANCES_DEVELOPMENT, config.getMinInstances());
+        assertEquals(DeploymentConstants.DEFAULT_MAX_INSTANCES_STAGING, config.getMaxInstances());
+        assertEquals(DeploymentConstants.DEFAULT_MIN_INSTANCES_STAGING, config.getMinInstances());
         assertTrue(config.isAutoScalingEnabled());
-        assertEquals(NetworkPolicy.OPEN, config.getNetworkPolicy());
-        assertEquals(List.of(
-                LoggingLevel.DEBUG,
-                LoggingLevel.INFO,
-                LoggingLevel.WARN,
-                LoggingLevel.ERROR), config.getLoggingLevels());
+        assertEquals(NetworkPolicy.CLOSED, config.getNetworkPolicy());
+        assertEquals(List.of(LoggingLevel.INFO, LoggingLevel.WARN, LoggingLevel.ERROR), config.getLoggingLevels());
         assertEquals(StorageType.STANDARD, config.getStorageType());
     }
 
@@ -50,8 +45,8 @@ public class DevelopmentDeploymentConfigurationBuilderTest {
 
         builder.environment(DeploymentEnvironment.DEVELOPMENT)
                 .region(Region.US_EAST_1)
-                .maxInstances(DeploymentConstants.DEFAULT_MIN_INSTANCES_DEVELOPMENT)
-                .minInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_DEVELOPMENT);
+                .maxInstances(DeploymentConstants.DEFAULT_MIN_INSTANCES_STAGING)
+                .minInstances(DeploymentConstants.DEFAULT_MAX_INSTANCES_STAGING);
 
         IllegalStateException thrown = assertThrows(IllegalStateException.class, builder::build);
         assertEquals("Min instances cannot exceed max instances.", thrown.getMessage());

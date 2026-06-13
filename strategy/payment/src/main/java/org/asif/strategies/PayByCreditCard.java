@@ -1,6 +1,8 @@
 package org.asif.strategies;
 
 import org.asif.util.DummyData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +14,7 @@ import java.util.Map;
  * Concrete strategy. Implements credit card payment method.
  */
 public class PayByCreditCard implements PayStrategy {
+    private static final Logger LOGGER = LoggerFactory.getLogger(PayByCreditCard.class);
     private static final BufferedReader READER = new BufferedReader(new InputStreamReader(System.in));
     private String cardNumber;
     private Map<String, Object> cardDetails = new HashMap<>();
@@ -34,9 +37,9 @@ public class PayByCreditCard implements PayStrategy {
                     "pin", pin
             );
             if (verify()) {
-                System.out.println("Data verification has been successful.");
+                LOGGER.info("Data verification has been successful.");
             } else {
-                System.out.println("Invalid card details.");
+                LOGGER.warn("Invalid card details.");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -58,7 +61,7 @@ public class PayByCreditCard implements PayStrategy {
     @Override
     public boolean pay(int paymentAmount) {
         if (cardIsPresent) {
-            System.out.println("Paying " + paymentAmount + " using Credit Card.");
+            LOGGER.info("Paying {} using Credit Card.", paymentAmount);
             return true;
         } else {
             return false;

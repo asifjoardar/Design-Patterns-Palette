@@ -1,8 +1,13 @@
 package org.asif.decorators;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 
 public class FileDataSource implements DataSource {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileDataSource.class);
+
     private final String name;
 
     public FileDataSource(String name) {
@@ -15,7 +20,7 @@ public class FileDataSource implements DataSource {
         try (OutputStream fos = new FileOutputStream(file)) {
             fos.write(data.getBytes(), 0, data.length());
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            LOGGER.error("Failed to write data to {}", name, ex);
         }
     }
 
@@ -27,7 +32,7 @@ public class FileDataSource implements DataSource {
             buffer = new char[(int) file.length()];
             reader.read(buffer);
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            LOGGER.error("Failed to read data from {}", name, ex);
         }
         return new String(buffer);
     }

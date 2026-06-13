@@ -1,6 +1,6 @@
-# Contributing to Design Pattern Palette
+# Contributing to Design Patterns Palette
 
-Thank you for considering contributing to **Design Pattern Palette**! We welcome contributions to make this repository a comprehensive collection of design pattern examples. Please follow these guidelines to ensure a smooth contribution process.
+Thank you for considering contributing to **Design Patterns Palette**! We welcome contributions to make this repository a comprehensive collection of design pattern examples. Please follow these guidelines to ensure a smooth contribution process.
 
 ## Table of Contents
 
@@ -23,7 +23,7 @@ This project is modular-based, and each design pattern has its own module. Here 
 
 ```
 pattern-name/
-  ├── example1/
+  ├── example-name/
   │   ├── src/
   │   ├── pom.xml
   ├── pom.xml
@@ -32,8 +32,8 @@ pom.xml
 
 ### Key Points:
 
-- **`pattern-name`**: Represents a design pattern (e.g., Singleton, Factory).
-- **`example1`**: Contains the examples code and a `pom.xml` for a specific implementation of the pattern.
+- **`pattern-name`**: Represents a design pattern (e.g., `singleton`, `factory-method`).
+- **`example-name`**: Contains the example code and a `pom.xml` for a specific implementation of the pattern. Use a descriptive, domain-specific name (e.g., `payment`, `deployment`), not a generic one.
 
 ## How to Contribute
 
@@ -62,8 +62,8 @@ pom.xml
 1. Open a new issue using the **New Pattern Issue Template**.
 2. Wait for approval from the maintainers.
 3. Create a new directory for the design pattern at the root level.
-5. Provide a detailed explanation of the design pattern and its examples in the issue template fields, including `.puml` diagrams if applicable.
-6. Commit your changes and submit a pull request.
+4. Provide a detailed explanation of the design pattern and its examples in the issue template fields, including `.puml` diagrams if applicable.
+5. Commit your changes and submit a pull request.
 
 ### Reporting Bugs
 

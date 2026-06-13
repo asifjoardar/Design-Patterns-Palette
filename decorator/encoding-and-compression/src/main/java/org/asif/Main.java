@@ -2,7 +2,11 @@ package org.asif;
 
 import org.asif.decorators.*;
 
-public class Main {
+public final class Main {
+    private Main() {
+        throw new UnsupportedOperationException("Main class cannot be instantiated");
+    }
+
     public static void main(String[] args) {
         String salaryRecords = """
                 Name, Salary

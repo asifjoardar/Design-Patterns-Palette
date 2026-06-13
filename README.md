@@ -1,6 +1,6 @@
 <div align="center">
   <br>
-  <h1>🎨 Design Pattern Palate 🖌️</h1>
+  <h1>🎨 Design Patterns Palette 🖌️</h1>
   <strong>Your ultimate cookbook of design patterns, serving code and clarity on a platter!</strong>
 </div>
 
@@ -18,7 +18,7 @@
 ---
 
 ## 👋 Introduction
-Welcome to **Design Pattern Palate**, a comprehensive repository for mastering design patterns with practical examples!
+Welcome to **Design Patterns Palette**, a comprehensive repository for mastering design patterns with practical examples!
 
 ### 📖 Table of Contents
 - [👋 Introduction](#-introduction)
@@ -31,7 +31,7 @@ Welcome to **Design Pattern Palate**, a comprehensive repository for mastering d
 ---
 
 ### 🎯 Motivation
-The **Design Pattern Palate** was born out of a desire to solve a common frustration for developers:
+The **Design Patterns Palette** was born out of a desire to solve a common frustration for developers:
 - Finding **appropriate, practical examples** of design patterns often meant endlessly sifting through Google search results.
 - Most examples out there are overly simplistic or clichéd, like cars and pizzas, which rarely resonate with real-world scenarios.
 - Provide a **one-stop resource** for learning and referencing design patterns.
@@ -67,8 +67,8 @@ Here's a detailed view of the design patterns included in this repository, their
 | **Creational**         | Abstract Factory          | ✅          | 1                    |
 |                        | Builder                   | ✅          | 1                    |
 |                        | Factory Method            | ✅          | 1                    |
-|                        | Singleton                 | ✅          | 1                    |
-| **Structural**         | Adapter                   | ✅          | 1                    |
+|                        | Singleton                 | ❌          | 0                    |
+| **Structural**         | Adapter                   | ❌          | 0                    |
 |                        | Composite                 | ❌          | 0                    |
 |                        | Decorator                 | ✅          | 1                    |
 |                        | Facade                    | ❌          | 0                    |
@@ -87,9 +87,9 @@ Legend:
 
 ## 📚 How to Contribute
 Contributions are what make the open-source community such a great place to learn, inspire, and create.  
-If you'd like to contribute, please follow the [Contributing Guidelines](https://github.com/asifjoardar/Design-Patterns-Palette/wiki).
+If you'd like to contribute, please follow the [Contributing Guidelines](./CONTRIBUTING.md).
 
-[![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=flat-square)](https://github.com/asifjoardar/Design-Patterns-Palette/wiki)
+[![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=flat-square)](./CONTRIBUTING.md)
 
 ---
 
