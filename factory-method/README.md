@@ -36,7 +36,7 @@ The bakery acts as a **factory**, deciding which specific bread to bake based on
 
 ## 🚀 Real-World Uses in Software
 
-- **Java's **`` - Provides a way to get different calendar instances.
+- **Java's `Calendar.getInstance()`** - Returns a calendar instance suited to the locale and time zone.
 - **Logging Frameworks (e.g., SLF4J, Log4J)** - Provides different logger implementations.
 - **Database Connection Factories** - Abstracts database connection logic from client code.
 - **GUI Toolkits** - Creates UI components dynamically.

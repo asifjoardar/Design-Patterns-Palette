@@ -1,43 +1,47 @@
 # Event Subscription (File Editor)
 
-## 📖 The Story Behind the Problem
-Imagine you are building a text editor application where users can open and save files. Now, you want to notify other components (like sending an email notification or logging events) whenever a user opens or saves a file.
+**Pattern:** [Observer](../README.md)
 
-Initially, you might think of directly calling these components from the Editor class, but that introduces several problems:
+## 📖 The Story (the problem)
+Imagine you are building a text editor where users open and save files. Whenever that happens, you also want other parts of the app to react — for example, send an email or write a log entry.
 
-* The Editor class becomes tightly coupled with specific notification and logging systems.
-* Adding new types of notifications (e.g., push notifications) will require changing the Editor class.
-* It becomes hard to maintain and extend the system over time.
+The quick approach is to call those components directly from the `Editor` class. But that causes problems:
 
-To solve these issues, we need a way for the Editor to notify multiple components without directly depending on them. This is where the Observer Design Pattern comes in.
+* The `Editor` becomes tightly coupled to specific notification and logging code.
+* Adding a new reaction (e.g. a push notification) means editing `Editor` again.
+* The system gets harder to maintain and extend over time.
 
-## 💡 Solution
+## 💡 The Solution (using the Observer pattern)
+The Observer pattern lets the `Editor` announce that something happened, while the interested parts simply *listen*. The `Editor` never needs to know who is listening.
 
-The Observer Pattern allows us to decouple the Editor class from the components that need to be notified (observers). With this pattern:
+* **`EventListener`** — the observer interface, with a single `update(eventType, file)` method.
+* **`EmailNotificationListener` / `LogOpenListener`** — the concrete observers that react to events.
+* **`EventManager`** — the subject. It keeps a list of listeners per event type (`"open"`, `"save"`) and notifies them when an event fires.
+* **`Editor`** — owns an `EventManager`; on open/save it fires the matching event. New listeners can be added without changing `Editor` or `EventManager`.
 
-* The Editor class only knows it needs to notify some observers about file events, but it doesn’t care which observers they are.
-* Observers (like EmailNotificationListener or LogOpenListener) subscribe to the EventManager. Each time an event occurs (e.g., a file is opened or saved), the EventManager notifies all subscribed listeners.
-* New observers can be added easily without modifying the Editor or EventManager class.
+## 💻 In Code
+```java
+Editor editor = new Editor();
 
-Here’s how it works in practice:
+// Subscribe listeners to the events they care about.
+editor.getEvents().subscribe("open", new LogOpenListener("/path/to/log.txt"));
+editor.getEvents().subscribe("save", new EmailNotificationListener("admin@example.com"));
 
-* EventManager keeps track of the observers for different event types (e.g., "open" and "save").
-* Observers (EmailNotificationListener and LogOpenListener) subscribe to events they are interested in.
-* When the editor opens or saves a file, the EventManager notifies all the relevant observers.
+editor.openFile("test.txt");   // notifies every "open" listener
+editor.saveFile();             // notifies every "save" listener
+```
 
 ## 🛠️ UML Diagram
 
 ![File Editor uml](uml.png)
 
-## 🎯 What We Achieve
+## 🎯 What We Gain
+* **Loose coupling:** the `Editor` doesn't need to know the details of any notifier.
+* **Scalability:** adding a new observer requires no changes to existing code.
+* **Flexibility:** observers can subscribe or unsubscribe at runtime.
+* **Clear organization:** the `EventManager` owns subscriptions and notifications.
 
-* Loose Coupling: The Editor class doesn’t need to know the details of notification systems.
-* Scalability: Adding new observers is easy and requires no changes to existing code.
-* Flexibility: Observers can be subscribed or unsubscribed dynamically at runtime.
-* Better Code Organization: The EventManager handles subscriptions and notifications, keeping responsibilities clear and separated.
-
-## ⚠️ Cons of This Solution
-
-* Complexity: Managing subscriptions and notifications adds some complexity, especially in larger systems.
-* Potential Overhead: If many observers are registered, the notification process can slow down.
-* Memory Leaks: Forgetting to unsubscribe listeners can lead to memory leaks in long-running applications.
+## ⚠️ Watch Out For
+* **Complexity:** managing subscriptions and notifications adds moving parts in larger systems.
+* **Overhead:** with many observers, notifying them all can get slow.
+* **Memory leaks:** forgetting to unsubscribe listeners can keep them alive forever.

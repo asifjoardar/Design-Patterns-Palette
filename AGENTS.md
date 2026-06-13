@@ -56,7 +56,10 @@ Mirror this skeleton when creating or extending an example:
 - **Domain subpackage(s)** — context/model classes (e.g. `order/Order`).
 - **`util/`** — helpers and mock data (e.g. `DummyData`, `MockDataLoader`).
 - **`resources/data/*.json`** — optional fixtures.
-- **`README.md` + `.puml`/`uml.png`** — explanation and diagram for the example.
+- **`README.md` + `.puml`/`uml.png`** — explanation and diagram for the example. Write the
+  README to the [Example README template](CONTRIBUTING.md#example-readme-template): lead with the
+  real-life problem in plain language, map the pattern roles to this example's real class names,
+  and include a short snippet copied from the source.
 
 ## Build, run & test
 

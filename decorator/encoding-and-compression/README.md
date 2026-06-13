@@ -1,48 +1,50 @@
 # Encoding and Compression
 
-## 📖 The Story Behind the Problem
+**Pattern:** [Decorator](../README.md)
 
-Imagine a system where you need to store sensitive data (like employee salary records). However, directly saving this data is risky:
+## 📖 The Story (the problem)
+Imagine a system that stores sensitive data such as employee salary records. Saving it as-is is risky:
 
-* Sensitive data needs to be encrypted for security.
-* Large datasets should be compressed to save storage space.
+* Sensitive data should be **encrypted** for security.
+* Large data should be **compressed** to save space.
 
-A simple solution might involve modifying the existing FileDataSource class to handle encryption and compression. However, this leads to several problems:
+The quick fix is to cram encryption and compression into the `FileDataSource` class itself. That backfires:
 
-* Violation of the Single Responsibility Principle: The FileDataSource class would have to manage both data storage and processing (encryption/compression).
-* Hard to maintain: If new features (like data hashing or logging) are required, the class will become more complex.
-* Limited flexibility: You might want to apply encryption and compression selectively. If everything is built into one class, it’s harder to control how these operations are applied.
-To overcome these issues, the Decorator Design Pattern provides a better solution by adding responsibilities to objects dynamically without modifying their code.
+* It breaks the **Single Responsibility Principle** — one class now stores *and* transforms data.
+* It gets hard to maintain as new needs (hashing, logging) pile on.
+* It's inflexible — you can't easily turn features on or off, or change their order.
 
-## 💡 Solution
+## 💡 The Solution (using the Decorator pattern)
+The Decorator pattern adds behavior by **wrapping** an object instead of editing it. Each decorator does one job, then hands the rest off to whatever it wraps.
 
-The Decorator Design Pattern allows us to attach additional functionality to an object at runtime by wrapping it in decorator classes. In this example:
+* **`DataSource`** — the component interface (`writeData` / `readData`).
+* **`FileDataSource`** — the concrete component; reads and writes the file.
+* **`DataSourceDecorator`** — the base decorator; holds a wrapped `DataSource` and forwards calls to it.
+* **`EncryptionDecorator` / `CompressionDecorator`** — concrete decorators that add one step each.
 
-* The FileDataSource class is responsible for reading and writing files.
-* Decorators (like EncryptionDecorator and CompressionDecorator) add new behavior dynamically. These decorators wrap the data source and apply encryption or compression as needed.
-* Multiple decorators can be combined. For example, you can first encrypt the data, then compress it, and finally store it in the file.
+Because every decorator wraps another `DataSource`, you can stack them in any order. In this example the data is **compressed first and then encrypted** on the way out (and reversed on the way in). Compressing before encrypting is the sensible order — encrypted data looks random and barely compresses.
 
-This approach keeps the original FileDataSource class simple and focused while giving the flexibility to extend its behavior without modifying it.
+## 💻 In Code
+```java
+// Wrap a plain file source with compression on top of encryption.
+DataSource source = new CompressionDecorator(
+        new EncryptionDecorator(new FileDataSource("output.txt")));
 
-Practical Flow in This Example:
-* The FileDataSource stores data in a file.
-* The EncryptionDecorator encrypts the data before writing it to the file and decrypts it when reading.
-* The CompressionDecorator compresses the encrypted data before storing it and decompresses it when reading.
-* Multiple decorators can be stacked in any order.
+source.writeData(salaryRecords);      // compress -> encrypt -> write to file
+String restored = source.readData();  // read -> decrypt -> decompress
+```
 
 ## 🛠️ UML Diagram
 
 ![Encoding and Compression uml](uml.png)
 
-## 🎯 What We Achieve
+## 🎯 What We Gain
+* **Single Responsibility:** each class does one thing (store, encrypt, or compress).
+* **Flexible composition:** decorators can be stacked in any combination.
+* **Extensibility:** add a new decorator (e.g. hashing) without changing existing code.
+* **Runtime behavior:** you can wrap an object dynamically based on conditions.
 
-* Single Responsibility Principle: Each class has only one responsibility (e.g., FileDataSource stores data, EncryptionDecorator handles encryption).
-* Flexible Composition: Decorators can be stacked in any order, allowing different combinations of behaviors.
-* Extensibility: New decorators can be added easily without changing existing code.
-* Runtime Behavior Modification: You can wrap an object in decorators dynamically, even during runtime, based on conditions.
-
-## ⚠️ Cons of This Solution
-
-* Complexity: Adding multiple decorators can make the code harder to understand, especially if many are nested.
-* Debugging Issues: Tracking data through multiple layers of decorators can become challenging.
-* Performance Overhead: Wrapping objects in many decorators adds some performance overhead, especially if heavy operations (like encryption or compression) are involved.
+## ⚠️ Watch Out For
+* **Complexity:** many nested decorators can be harder to follow.
+* **Debugging:** tracing data through several layers takes more effort.
+* **Performance overhead:** each layer adds work, especially heavy steps like encryption.

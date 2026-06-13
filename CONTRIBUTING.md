@@ -52,10 +52,47 @@ pom.xml
 2. Provide an explanation of your example in the issue template fields, including relevant `.puml` diagrams.
 3. Wait for approval from the maintainers.
 4. Add the example under the corresponding `pattern-name` directory:
-   - Create a new directory (e.g., `example2`).
+   - Create a new directory with a descriptive, domain-specific name (e.g., `payment`, `deployment`).
    - Add your implementation.
+   - Add a `README.md` following the [Example README template](#example-readme-template) below.
 5. Ensure your code passes the Checkstyle rules.
 6. Commit your changes and submit a pull request.
+
+### Example README template
+
+Keep example explanations simple and beginner-friendly: open with the real-life problem, then
+show how the pattern solves it using *this example's real class names*, and include a short code
+snippet copied from your source. Copy this skeleton:
+
+````markdown
+# <Example Title>
+
+**Pattern:** [<Pattern Name>](../README.md)
+
+## 📖 The Story (the problem)
+<A plain, real-life scenario. Then a short bullet list of why the naive approach hurts.>
+
+## 💡 The Solution (using the <Pattern> pattern)
+<How the pattern fixes it. Map each pattern role to the real class names in this example.>
+
+## 💻 In Code
+```java
+// A few real lines copied/adapted from this example's source.
+```
+
+## 🛠️ UML Diagram
+
+![<example> uml](uml.png)
+
+## 🎯 What We Gain
+- <benefit>
+
+## ⚠️ Watch Out For
+- <trade-off or pitfall>
+````
+
+Guidelines: every heading is a real `##`, lead with simple language before any jargon, and make
+sure the code snippet matches classes that actually exist in your example.
 
 ### Adding a New Design Pattern
 
