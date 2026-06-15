@@ -50,13 +50,13 @@ Use the Abstract Factory pattern when:
 - **Products (A & B)**: The actual objects being created (e.g., buttons, menus)
 
 ## ⚖️ Pros and Cons
-### Pros:
+### ✅ Pros
 - Ensures compatibility between products
 - Isolates concrete classes
 - Makes exchanging product families easy
 - Promotes consistency among products
 
-### Cons:
+### ❌ Cons
 - Supporting new kinds of products is difficult
 - Complexity increases with each new variant
 - May be overkill for simple scenarios

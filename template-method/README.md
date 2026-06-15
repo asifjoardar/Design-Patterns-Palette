@@ -43,12 +43,12 @@ Below is the UML diagram for the Template Method Pattern:
 
 ## ⚖️ Pros and Cons
 
-### Pros:
+### ✅ Pros
 - **Code Reusability**: Common behavior is centralized in the superclass.
 - **Flexibility**: Subclasses can override specific steps without changing the overall algorithm.
 - **Control**: The superclass controls the algorithm's structure, ensuring consistency.
 
-### Cons:
+### ❌ Cons
 - **Rigidity**: The pattern can be inflexible if too many steps are predefined.
 - **Complexity**: Overuse can lead to a large number of subclasses, making the system harder to maintain.
 

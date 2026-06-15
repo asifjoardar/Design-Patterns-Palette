@@ -58,13 +58,13 @@ The Context class will call setStrategy() to set the appropriate strategy, and t
 
 ## ⚖️ Pros and Cons
 
-### **Advantages:**
+### ✅ Pros
 
 * **Better Maintainability:** Each algorithm lives in its own class, making it easy to manage and extend.
 * **Adheres to SOLID Principles:** Especially the Open/Closed Principle (open for extension, closed for modification).
 * **Runtime Flexibility:** Easily swap strategies at runtime without major code changes.
 
-### **Disadvantages:**
+### ❌ Cons
 
 * **Class Explosion:** Each strategy needs its own class, which can clutter the codebase if there are many algorithms.
 * **Client Complexity:** The client needs to be aware of all available strategies and how to select them.
@@ -74,3 +74,12 @@ The Context class will call setStrategy() to set the appropriate strategy, and t
 * **Factory Pattern:** Often works hand-in-hand with Strategy to create instances of different strategies based on user input or configuration.
 * **State Pattern:** Similar to Strategy, but while the Strategy pattern switches algorithms explicitly, the State pattern changes behavior dynamically depending on the object's state.
 * **Decorator Pattern:** Both patterns modify behavior, but while Decorator wraps additional responsibilities around objects, Strategy swaps the underlying algorithm entirely.
+
+## 📚 Resources to Learn More
+
+- Books:
+  - Design Patterns: Elements of Reusable Object-Oriented Software by Erich Gamma et al. (the "Gang of Four" book).
+  - Head First Design Patterns by Eric Freeman and Elisabeth Robson.
+
+- Online Articles:
+  - [Refactoring Guru - Strategy Pattern](https://refactoring.guru/design-patterns/strategy)

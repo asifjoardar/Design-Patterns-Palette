@@ -59,13 +59,13 @@ Here's a simplified UML diagram for the Builder pattern:
 - Product: The complex object being built
 
 ## ⚖️ Pros and Cons
-**Advantages:**
+### ✅ Pros
 - Clean Code: Avoids telescoping constructors
 - Flexibility: Can create different representations using the same process
 - Encapsulation: Construction details are hidden from the client
 - Step-by-Step: Clear separation of construction steps
 
-**Disadvantages:**
+### ❌ Cons
 - Complexity: Requires creating multiple new classes
 - Overhead: Might be overkill for simple objects
 - Mutable State: Builder must maintain object state during construction
@@ -75,3 +75,12 @@ Here's a simplified UML diagram for the Builder pattern:
 - Abstract Factory: Can use Builder to create complex products within an Abstract Factory
 - Composite Pattern: Builders are often used to construct complex composite structures
 - Fluent Interface: Builder often implements a fluent interface (method chaining) for a more readable API
+
+## 📚 Resources to Learn More
+
+- Books:
+  - Design Patterns: Elements of Reusable Object-Oriented Software by Erich Gamma et al. (the "Gang of Four" book).
+  - Head First Design Patterns by Eric Freeman and Elisabeth Robson.
+
+- Online Articles:
+  - [Refactoring Guru - Builder Pattern](https://refactoring.guru/design-patterns/builder)

@@ -36,12 +36,12 @@ Here's a UML representation of the Adapter Pattern using PlantUML:
 - **Adapter**: Bridges the gap between Target and Adaptee.
 
 ## ⚖️ Pros and Cons
-### Pros
+### ✅ Pros
 - Promotes code reuse by allowing existing classes to be used with new interfaces.
 - Helps in adhering to the Open/Closed Principle.
 - Simplifies integration with third-party libraries.
 
-### Cons
+### ❌ Cons
 - Increases the overall complexity of the codebase.
 - May introduce additional layers, leading to performance overhead.
 
@@ -50,7 +50,7 @@ Here's a UML representation of the Adapter Pattern using PlantUML:
 - **Decorator Pattern:** Unlike Adapter, Decorator adds new behavior without changing the interface.
 - **Facade Pattern:** Facade simplifies an interface, while Adapter alters it to fit.
 
-## 📚 Resources
+## 📚 Resources to Learn More
 
 ### Books
 1. "Design Patterns: Elements of Reusable Object-Oriented Software" by Gang of Four (GoF)
