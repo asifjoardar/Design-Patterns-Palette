@@ -73,7 +73,7 @@ Here's a detailed view of the design patterns included in this repository, their
 |                        | Decorator                 | ✅          | 1                    |
 |                        | Facade                    | ❌          | 0                    |
 |                        | Proxy                     | ❌          | 0                    |
-| **Behavioral**         | Command                   | ❌          | 0                    |
+| **Behavioral**         | Command                   | ✅          | 1                    |
 |                        | Iterator                  | ❌          | 0                    |
 |                        | Observer                  | ✅          | 1                    |
 |                        | State                     | ❌          | 0                    |
