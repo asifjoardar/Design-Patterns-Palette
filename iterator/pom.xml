@@ -10,5 +10,10 @@
     </parent>
 
     <artifactId>iterator</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>playlist-traversal</module>
+    </modules>
 
 </project>

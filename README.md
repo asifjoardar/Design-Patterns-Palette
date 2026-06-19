@@ -68,17 +68,17 @@ Here's a detailed view of the design patterns included in this repository, their
 |                        | Builder                   | ✅          | 1                    |
 |                        | Factory Method            | ✅          | 1                    |
 |                        | Singleton                 | ✅          | 1                    |
-| **Structural**         | Adapter                   | ❌          | 0                    |
-|                        | Composite                 | ❌          | 0                    |
+| **Structural**         | Adapter                   | ✅          | 1                    |
+|                        | Composite                 | ✅          | 1                    |
 |                        | Decorator                 | ✅          | 1                    |
-|                        | Facade                    | ❌          | 0                    |
-|                        | Proxy                     | ❌          | 0                    |
-| **Behavioral**         | Command                   | ❌          | 0                    |
-|                        | Iterator                  | ❌          | 0                    |
+|                        | Facade                    | ✅          | 1                    |
+|                        | Proxy                     | ✅          | 1                    |
+| **Behavioral**         | Command                   | ✅          | 1                    |
+|                        | Iterator                  | ✅          | 1                    |
 |                        | Observer                  | ✅          | 1                    |
-|                        | State                     | ❌          | 0                    |
+|                        | State                     | ✅          | 1                    |
 |                        | Strategy                  | ✅          | 1                    |
-|                        | Template Method           | ❌          | 0                    |
+|                        | Template Method           | ✅          | 1                    |
 
 Legend:  
 ✅ = Implemented | ❌ = Not Implemented

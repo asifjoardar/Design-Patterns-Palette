@@ -10,5 +10,10 @@
     </parent>
 
     <artifactId>proxy</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>caching-exchange-rate</module>
+    </modules>
 
 </project>

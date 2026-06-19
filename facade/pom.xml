@@ -10,5 +10,10 @@
     </parent>
 
     <artifactId>facade</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>order-checkout</module>
+    </modules>
 
 </project>

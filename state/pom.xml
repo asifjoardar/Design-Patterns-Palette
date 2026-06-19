@@ -10,5 +10,10 @@
     </parent>
 
     <artifactId>state</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>document-workflow</module>
+    </modules>
 
 </project>

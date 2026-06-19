@@ -10,5 +10,10 @@
     </parent>
 
     <artifactId>command</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>text-editor-undo-redo</module>
+    </modules>
 
 </project>

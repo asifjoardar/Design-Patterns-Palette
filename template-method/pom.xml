@@ -10,5 +10,10 @@
     </parent>
 
     <artifactId>template-method</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>report-exporter</module>
+    </modules>
 
 </project>

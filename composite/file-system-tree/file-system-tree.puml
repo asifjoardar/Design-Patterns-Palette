@@ -1,0 +1,28 @@
+@startuml
+interface FileSystemNode {
+    +name(): String
+    +sizeInBytes(): long
+    +tree(indent: String): String
+}
+
+class FileLeaf {
+    -name: String
+    -sizeInBytes: long
+    +name(): String
+    +sizeInBytes(): long
+    +tree(indent: String): String
+}
+
+class Directory {
+    -name: String
+    -children: List<FileSystemNode>
+    +add(node: FileSystemNode): Directory
+    +name(): String
+    +sizeInBytes(): long
+    +tree(indent: String): String
+}
+
+FileSystemNode <|.. FileLeaf
+FileSystemNode <|.. Directory
+Directory o--> FileSystemNode : "children"
+@enduml

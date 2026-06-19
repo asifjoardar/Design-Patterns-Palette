@@ -1,0 +1,45 @@
+@startuml
+interface Command {
+    +execute(): void
+    +undo(): void
+}
+
+class InsertTextCommand {
+    -document: Document
+    -text: String
+    +execute(): void
+    +undo(): void
+}
+
+class DeleteLastCommand {
+    -document: Document
+    -count: int
+    -removed: String
+    +execute(): void
+    +undo(): void
+}
+
+class Document {
+    -content: StringBuilder
+    +append(text: String): void
+    +deleteLast(count: int): String
+    +getContent(): String
+}
+
+class Editor {
+    -document: Document
+    -undoStack: Deque<Command>
+    -redoStack: Deque<Command>
+    +execute(command: Command): void
+    +undo(): void
+    +redo(): void
+    +getText(): String
+}
+
+Command <|.. InsertTextCommand
+Command <|.. DeleteLastCommand
+InsertTextCommand ..> Document : "edits"
+DeleteLastCommand ..> Document : "edits"
+Editor o--> Command : "history"
+Editor --> Document
+@enduml

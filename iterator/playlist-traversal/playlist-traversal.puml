@@ -1,0 +1,39 @@
+@startuml
+interface "Iterator<Song>" as Iterator {
+    +hasNext(): boolean
+    +next(): Song
+}
+
+class Playlist {
+    -songs: List<Song>
+    +add(song: Song): void
+    +size(): int
+    +iterator(): Iterator<Song>
+    +reverseIterator(): Iterator<Song>
+}
+
+class PlaylistIterator {
+    -songs: List<Song>
+    -cursor: int
+    +hasNext(): boolean
+    +next(): Song
+}
+
+class ReversePlaylistIterator {
+    -songs: List<Song>
+    -cursor: int
+    +hasNext(): boolean
+    +next(): Song
+}
+
+class Song <<record>> {
+    +title: String
+    +artist: String
+}
+
+Iterator <|.. PlaylistIterator
+Iterator <|.. ReversePlaylistIterator
+Playlist ..> PlaylistIterator : "creates"
+Playlist ..> ReversePlaylistIterator : "creates"
+Playlist o--> Song
+@enduml

@@ -10,5 +10,10 @@
     </parent>
 
     <artifactId>composite</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>file-system-tree</module>
+    </modules>
 
 </project>

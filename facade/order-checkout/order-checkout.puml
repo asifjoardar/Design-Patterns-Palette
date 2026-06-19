@@ -1,0 +1,42 @@
+@startuml
+class OrderCheckoutFacade {
+    -inventory: InventoryService
+    -payment: PaymentService
+    -shipping: ShippingService
+    -notifications: NotificationService
+    +placeOrder(customer, sku, quantity, amount, address): OrderResult
+}
+
+class InventoryService {
+    +addStock(sku: String, quantity: int): void
+    +isInStock(sku: String, quantity: int): boolean
+    +reserve(sku: String, quantity: int): void
+    +available(sku: String): int
+}
+
+class PaymentService {
+    +charge(customer: String, amount: double): String
+}
+
+class ShippingService {
+    +scheduleDelivery(sku: String, quantity: int, address: String): String
+}
+
+class NotificationService {
+    +emailCustomer(customer: String, message: String): void
+    +getSentMessages(): List<String>
+}
+
+class OrderResult <<record>> {
+    +success: boolean
+    +message: String
+    +transactionId: String
+    +trackingNumber: String
+}
+
+OrderCheckoutFacade --> InventoryService
+OrderCheckoutFacade --> PaymentService
+OrderCheckoutFacade --> ShippingService
+OrderCheckoutFacade --> NotificationService
+OrderCheckoutFacade ..> OrderResult : "returns"
+@enduml
