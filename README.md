@@ -76,7 +76,7 @@ Here's a detailed view of the design patterns included in this repository, their
 | **Behavioral**         | Command                   | ✅          | 1                    |
 |                        | Iterator                  | ✅          | 1                    |
 |                        | Observer                  | ✅          | 1                    |
-|                        | State                     | ❌          | 0                    |
+|                        | State                     | ✅          | 1                    |
 |                        | Strategy                  | ✅          | 1                    |
 |                        | Template Method           | ❌          | 0                    |
 
