@@ -74,7 +74,7 @@ Here's a detailed view of the design patterns included in this repository, their
 |                        | Facade                    | ✅          | 1                    |
 |                        | Proxy                     | ✅          | 1                    |
 | **Behavioral**         | Command                   | ✅          | 1                    |
-|                        | Iterator                  | ❌          | 0                    |
+|                        | Iterator                  | ✅          | 1                    |
 |                        | Observer                  | ✅          | 1                    |
 |                        | State                     | ❌          | 0                    |
 |                        | Strategy                  | ✅          | 1                    |

@@ -5,15 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.asif</groupId>
-        <artifactId>design-patterns-palette</artifactId>
+        <artifactId>iterator</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>iterator</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>playlist-traversal</artifactId>
 
-    <modules>
-        <module>playlist-traversal</module>
-    </modules>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
