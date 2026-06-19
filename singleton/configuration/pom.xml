@@ -5,15 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.asif</groupId>
-        <artifactId>design-patterns-palette</artifactId>
+        <artifactId>singleton</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>singleton</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>configuration</artifactId>
 
-    <modules>
-        <module>configuration</module>
-    </modules>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

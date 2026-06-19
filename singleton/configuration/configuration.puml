@@ -1,0 +1,15 @@
+@startuml
+class ConfigurationManager {
+    -settings: Properties
+    -ConfigurationManager()
+    +{static} getInstance(): ConfigurationManager
+    +get(key: String): String
+}
+
+class Holder {
+    -{static} INSTANCE: ConfigurationManager
+}
+
+ConfigurationManager +-- Holder : "lazily creates one instance"
+ConfigurationManager ..> Holder : "getInstance() returns INSTANCE"
+@enduml
