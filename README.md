@@ -67,7 +67,7 @@ Here's a detailed view of the design patterns included in this repository, their
 | **Creational**         | Abstract Factory          | ✅          | 1                    |
 |                        | Builder                   | ✅          | 1                    |
 |                        | Factory Method            | ✅          | 1                    |
-|                        | Singleton                 | ❌          | 0                    |
+|                        | Singleton                 | ✅          | 1                    |
 | **Structural**         | Adapter                   | ❌          | 0                    |
 |                        | Composite                 | ❌          | 0                    |
 |                        | Decorator                 | ✅          | 1                    |
