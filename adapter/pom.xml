@@ -10,5 +10,10 @@
     </parent>
 
     <artifactId>adapter</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>xml-to-json-analytics</module>
+    </modules>
 
 </project>
