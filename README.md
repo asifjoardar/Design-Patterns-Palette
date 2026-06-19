@@ -78,7 +78,7 @@ Here's a detailed view of the design patterns included in this repository, their
 |                        | Observer                  | ✅          | 1                    |
 |                        | State                     | ✅          | 1                    |
 |                        | Strategy                  | ✅          | 1                    |
-|                        | Template Method           | ❌          | 0                    |
+|                        | Template Method           | ✅          | 1                    |
 
 Legend:  
 ✅ = Implemented | ❌ = Not Implemented
