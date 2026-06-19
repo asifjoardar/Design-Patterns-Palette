@@ -71,7 +71,7 @@ Here's a detailed view of the design patterns included in this repository, their
 | **Structural**         | Adapter                   | ✅          | 1                    |
 |                        | Composite                 | ❌          | 0                    |
 |                        | Decorator                 | ✅          | 1                    |
-|                        | Facade                    | ❌          | 0                    |
+|                        | Facade                    | ✅          | 1                    |
 |                        | Proxy                     | ❌          | 0                    |
 | **Behavioral**         | Command                   | ✅          | 1                    |
 |                        | Iterator                  | ❌          | 0                    |
