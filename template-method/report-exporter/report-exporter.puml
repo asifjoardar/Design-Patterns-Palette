@@ -1,0 +1,37 @@
+@startuml
+abstract class ReportExporter {
+    +{final} export(report: Report): String
+    #{abstract} header(columns: List<String>): String
+    #{abstract} row(columns: List<String>, values: List<String>): String
+    #open(): String
+    #rowSeparator(): String
+    #footer(): String
+    #close(): String
+}
+
+class CsvReportExporter {
+    #header(columns: List<String>): String
+    #row(columns: List<String>, values: List<String>): String
+}
+
+class JsonReportExporter {
+    #open(): String
+    #header(columns: List<String>): String
+    #row(columns: List<String>, values: List<String>): String
+    #rowSeparator(): String
+    #footer(): String
+    #close(): String
+}
+
+class Report {
+    -columns: List<String>
+    -rows: List<List<String>>
+    +addRow(values: String...): Report
+    +columns(): List<String>
+    +rows(): List<List<String>>
+}
+
+ReportExporter <|-- CsvReportExporter
+ReportExporter <|-- JsonReportExporter
+ReportExporter ..> Report : "exports"
+@enduml

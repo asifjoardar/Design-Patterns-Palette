@@ -1,0 +1,22 @@
+@startuml
+interface ExchangeRateService {
+    +getRate(from: String, to: String): double
+}
+
+class RemoteExchangeRateService {
+    -rates: Map<String, Double>
+    -remoteCallCount: int
+    +getRate(from: String, to: String): double
+    +getRemoteCallCount(): int
+}
+
+class CachingExchangeRateProxy {
+    -origin: ExchangeRateService
+    -cache: Map<String, Double>
+    +getRate(from: String, to: String): double
+}
+
+ExchangeRateService <|.. RemoteExchangeRateService
+ExchangeRateService <|.. CachingExchangeRateProxy
+CachingExchangeRateProxy o--> ExchangeRateService : "origin"
+@enduml

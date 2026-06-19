@@ -1,0 +1,45 @@
+@startuml
+interface DocumentState {
+    +publish(document: Document): void
+    +name(): String
+}
+
+class Document {
+    -title: String
+    -state: DocumentState
+    -currentRole: Role
+    +publish(): void
+    +actAs(role: Role): void
+    +currentState(): String
+    +currentRole(): Role
+    ~changeState(next: DocumentState): void
+}
+
+class DraftState {
+    +publish(document: Document): void
+    +name(): String
+}
+
+class ModerationState {
+    +publish(document: Document): void
+    +name(): String
+}
+
+class PublishedState {
+    +publish(document: Document): void
+    +name(): String
+}
+
+enum Role {
+    AUTHOR
+    ADMIN
+}
+
+DocumentState <|.. DraftState
+DocumentState <|.. ModerationState
+DocumentState <|.. PublishedState
+Document o--> DocumentState : "state"
+Document --> Role
+DraftState ..> ModerationState : "submits to"
+ModerationState ..> PublishedState : "approves to"
+@enduml

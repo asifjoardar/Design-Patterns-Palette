@@ -1,0 +1,25 @@
+@startuml
+interface AnalyticsService {
+    +fetchVisitsJson(): String
+}
+
+class XmlToJsonAnalyticsAdapter {
+    -provider: XmlTrafficProvider
+    -gson: Gson
+    +fetchVisitsJson(): String
+    -parse(xml: String): List<VisitRecord>
+}
+
+class XmlTrafficProvider {
+    +fetchTrafficXml(): String
+}
+
+class VisitRecord <<record>> {
+    +url: String
+    +visits: int
+}
+
+AnalyticsService <|.. XmlToJsonAnalyticsAdapter
+XmlToJsonAnalyticsAdapter o--> XmlTrafficProvider : "adapts"
+XmlToJsonAnalyticsAdapter ..> VisitRecord
+@enduml
