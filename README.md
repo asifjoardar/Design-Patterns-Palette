@@ -69,7 +69,7 @@ Here's a detailed view of the design patterns included in this repository, their
 |                        | Factory Method            | ✅          | 1                    |
 |                        | Singleton                 | ✅          | 1                    |
 | **Structural**         | Adapter                   | ✅          | 1                    |
-|                        | Composite                 | ❌          | 0                    |
+|                        | Composite                 | ✅          | 1                    |
 |                        | Decorator                 | ✅          | 1                    |
 |                        | Facade                    | ✅          | 1                    |
 |                        | Proxy                     | ✅          | 1                    |
